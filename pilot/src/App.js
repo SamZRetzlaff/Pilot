@@ -8,22 +8,45 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      allPilotFiles: {},
-      currentPilot: '',
-      pilotFile: {},
+      allUserFiles: [
+      {User_ID:1,Workcenter_ID:"Maintainence Bay", Username:"alan.scott", Email_Address: "maintainer1@usaf.mil", Password:"password1",First_Name:"Alan",Last_Name:"Scott", User_Role: "maintainer"},
+      {User_ID:2,Workcenter_ID:"Hangar", Username:"sam.retzlaff", Email_Address: "pilot1@usaf.mil", Password:"password2",First_Name:"Sam",Last_Name:"Retzlaff", User_Role: "pilot"},
+      {User_ID:3,Workcenter_ID:"Hangar", Username:"andrew.rohn", Email_Address: "pilot2@usaf.mil", Password:"password3",First_Name:"Andrew",Last_Name:"Rohn", User_Role: "pilot"},
+      {User_ID:4,Workcenter_ID:"Hangar", Username:"robert.cameron", Email_Address: "pilot3@usaf.mil", Password:"password4",First_Name:"Robert",Last_Name:"Cameron", User_Role: "pilot"},
+      {User_ID:5,Workcenter_ID:"Hangar", Username:"rex.ayers", Email_Address: "pilot4@usaf.mil",Password:"password5",First_Name:"Rex",Last_Name:"Ayers", User_Role: "pilot"}
+      ],
+      allPilotFiles: [
+      {Pilot_ID:1, User_ID:2, DNIF: false, Shift:"Day", Flying_Hours:600, Qualification:"Instructor"},
+      {Pilot_ID:2, User_ID:3, DNIF: false, Shift: "Day", Flying_Hours:80, Qualification:"Wingman"},
+      {Pilot_ID:3, User_ID:4, DNIF: false, Shift: "Night", Flying_Hours:5, Qualification:"Student"},
+      {Pilot_ID:4, User_ID:5, DNIF: true, Shift: "Day", Flying_Hours:800, Qualification:"Evaluator"},
+    ],
+      currentPilotUsername: '',
+      currentPilotFile: {},
+      currentUserFile: {}
     }
   }
+
   //METHODS
+  // async dataHandler() {
+  //   const usersResponse = await fetch('/dummyUser.json')
+  //   const pilotsResponse = await fetch('/dummyPilot.json')
+  //   const usersJson = await usersResponse.json()
+  //   const pilotsJson = await pilotsResponse.json()
+  //   this.setState({allUserFiles: usersJson,
+  //   allPilotFiles: pilotsJson})
+  // }
+
   handlePilotInput = (event) =>{
     event.preventDefault()
-    this.setState({currentPilot: event.target.value})
+    this.setState({currentPilotUsername: event.target.value})
   }
 
   async handlePilotSubmit (event) {
     event.preventDefault()
-    const response = await fetch()
-    const json = await response.json()
-    this.setState({pilotFile: json})
+    const userFile = this.allUserFiles.filter(user => 
+    const pilotFile = 
+    this.setState({currentPilotFile: pilot})
   }
 
   //RENDER
@@ -34,7 +57,9 @@ class App extends React.Component {
         <p>Enter Username</p>
         <PersonalFile
         onPilotInput = {this.handlePilotInput}
-        onPilotSubmit = {this.handlePilotSubmit.bind(this)} 
+        onPilotSubmit = {this.handlePilotSubmit.bind(this)}
+        userFile = {this.currentUserFile}
+        pilotFile = {this.currentPilotFile} 
         />
       </div>
     )
