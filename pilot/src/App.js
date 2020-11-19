@@ -28,6 +28,7 @@ class App extends React.Component {
   }
 
   //METHODS
+  
   // async dataHandler() {
   //   const usersResponse = await fetch('/dummyUser.json')
   //   const pilotsResponse = await fetch('/dummyPilot.json')
