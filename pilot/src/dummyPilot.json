@@ -1,0 +1,5 @@
+[{"Pilot_ID":1,"User_ID":2,"DNIF": false,"Shift":"Day","Flying_Hours":600,"Qualification":"Instructor"},
+{"Pilot_ID":2,"User_ID":3,"DNIF": false,"Shift":"Day","Flying_Hours":80,"Qualification":"Wingman"},
+{"Pilot_ID":3,"User_ID":4,"DNIF": false,"Shift":"Night","Flying_Hours":5,"Qualification":"Student"},
+{"Pilot_ID":4,"User_ID":5,"DNIF": true,"Shift":"Day","Flying_Hours":800,"Qualification":"Evaluator"}
+]
