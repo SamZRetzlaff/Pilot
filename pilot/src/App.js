@@ -21,7 +21,7 @@ class App extends React.Component {
       {Pilot_ID:3, User_ID:4, DNIF: false, Shift: "Night", Flying_Hours:5, Qualification:"Student"},
       {Pilot_ID:4, User_ID:5, DNIF: true, Shift: "Day", Flying_Hours:800, Qualification:"Evaluator"},
     ],
-      currentPilotUsername: '',
+      currentPilotUser_ID: '',
       currentPilotFile: {},
       currentUserFile: {}
     }
@@ -39,14 +39,14 @@ class App extends React.Component {
 
   handlePilotInput = (event) =>{
     event.preventDefault()
-    this.setState({currentPilotUsername: event.target.value})
+    this.setState({currentPilotUser_ID: event.target.value})
   }
 
   async handlePilotSubmit (event) {
     event.preventDefault()
-    const userFile = this.allUserFiles.filter(user => 
-    const pilotFile = 
-    this.setState({currentPilotFile: pilot})
+    const userFile = this.allUserFiles.filter(user => user.User_ID === this.currentPilotUser_ID)
+    const pilotFile = this.allPilotFiles.filter(pilot => pilot.User_ID === this.currentPilotUser_ID)
+    this.setState({currentUserFile: userFile, currentPilotFile: pilotFile})
   }
 
   //RENDER
@@ -54,7 +54,7 @@ class App extends React.Component {
     return (
       <div >
         <h1>Pilot Microservice</h1>
-        <p>Enter Username</p>
+        <p>Enter User_ID</p>
         <PersonalFile
         onPilotInput = {this.handlePilotInput}
         onPilotSubmit = {this.handlePilotSubmit.bind(this)}
