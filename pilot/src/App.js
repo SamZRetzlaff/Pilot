@@ -44,8 +44,10 @@ class App extends React.Component {
 
   async handlePilotSubmit (event) {
     event.preventDefault()
-    const userFile = this.allUserFiles.filter(user => user.User_ID === this.currentPilotUser_ID)
-    const pilotFile = this.allPilotFiles.filter(pilot => pilot.User_ID === this.currentPilotUser_ID)
+    const userFile = this.state.allUserFiles[4]
+    const pilotFile = this.state.allPilotFiles[3]
+    // const userFile = this.state.allUserFiles.filter(user => user.User_ID === this.state.currentPilotUser_ID)
+    // const pilotFile = this.state.allPilotFiles.filter(pilot => pilot.User_ID === this.state.currentPilotUser_ID)
     this.setState({currentUserFile: userFile, currentPilotFile: pilotFile})
   }
 
@@ -58,8 +60,8 @@ class App extends React.Component {
         <PersonalFile
         onPilotInput = {this.handlePilotInput}
         onPilotSubmit = {this.handlePilotSubmit.bind(this)}
-        userFile = {this.currentUserFile}
-        pilotFile = {this.currentPilotFile} 
+        userFile = {this.state.currentUserFile}
+        pilotFile = {this.state.currentPilotFile} 
         />
       </div>
     )
