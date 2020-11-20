@@ -36,10 +36,10 @@ class App extends React.Component {
     event.preventDefault()
     const currentUserResponse = await fetch(`http://localhost:3001/users/${this.state.currentPilotUser_ID}`)
     const currentUserJson = await currentUserResponse.json()
-    this.setState({currentUserFile: currentUserJson})
+    this.setState({currentUserFile: currentUserJson[0]})
     const currentPilotResponse = await fetch(`http://localhost:3001/pilots/${this.state.currentPilotUser_ID}`)
     const currentPilotJson = await currentPilotResponse.json()
-    this.setState({currentPilotFile: currentPilotJson}) 
+    this.setState({currentPilotFile: currentPilotJson[0]}) 
   }
 
   //RENDER
@@ -54,6 +54,7 @@ class App extends React.Component {
         userFile = {this.state.currentUserFile}
         pilotFile = {this.state.currentPilotFile} 
         />
+        
       </div>
     )
   }

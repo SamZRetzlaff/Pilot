@@ -17,9 +17,7 @@ function PersonalFile(props){
             <h2>Pilot Profile</h2>
             <p>DNIF Status: {DNIF_Status}</p>
             <p>Qualification: {props.pilotFile.qualification}</p>
-            <p>Flight Hours:{props.pilotFile.flying_hours}</p>
-
-
+            <p>Flight Hours: {props.pilotFile.flying_hours}</p>
         </div>
     )
 }
