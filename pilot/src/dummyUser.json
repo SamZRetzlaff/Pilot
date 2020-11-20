@@ -3,3 +3,10 @@
 {"User_ID":3,"Workcenter_ID":"Hangar", "Username":"andrew.rohn", "Email_Address": "pilot2@usaf.mil","Password":"password3","First_Name":"Andrew","Last_Name":"Rohn", "User_Role": "pilot"},
 {"User_ID":4,"Workcenter_ID":"Hangar", "Username":"robert.cameron", "Email_Address": "pilot3@usaf.mil","Password":"password4","First_Name":"Robert","Last_Name":"Cameron", "User_Role": "pilot"},
 {"User_ID":5,"Workcenter_ID":"Hangar", "Username":"rex.ayers", "Email_Address": "pilot4@usaf.mil","Password":"password5","First_Name":"Rex","Last_Name":"Ayers", "User_Role": "pilot"}]
+
+
+// {User_ID:1,Workcenter_ID:"Maintainence Bay", Username:"alan.scott", Email_Address: "maintainer1@usaf.mil", Password:"password1",First_Name:"Alan",Last_Name:"Scott", User_Role: "maintainer"},
+// {User_ID:2,Workcenter_ID:"Hangar", Username:"sam.retzlaff", Email_Address: "pilot1@usaf.mil", Password:"password2",First_Name:"Sam",Last_Name:"Retzlaff", User_Role: "pilot"},
+// {User_ID:3,Workcenter_ID:"Hangar", Username:"andrew.rohn", Email_Address: "pilot2@usaf.mil", Password:"password3",First_Name:"Andrew",Last_Name:"Rohn", User_Role: "pilot"},
+// {User_ID:4,Workcenter_ID:"Hangar", Username:"robert.cameron", Email_Address: "pilot3@usaf.mil", Password:"password4",First_Name:"Robert",Last_Name:"Cameron", User_Role: "pilot"},
+// {User_ID:5,Workcenter_ID:"Hangar", Username:"rex.ayers", Email_Address: "pilot4@usaf.mil",Password:"password5",First_Name:"Rex",Last_Name:"Ayers", User_Role: "pilot"}
