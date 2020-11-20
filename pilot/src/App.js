@@ -31,6 +31,11 @@ class App extends React.Component {
     const currentPilotJson = await currentPilotResponse.json()
     this.setState({currentPilotFile: currentPilotJson[0]}) 
     this.setState({currentPilotPilot_ID: currentPilotJson[0].pilot_id})
+    
+  }
+  
+  async handlePilotSchedule (event) {
+    event.preventDefault()
     const currentUserFlightsResponse = await fetch(`http://localhost:3001/flight/${this.state.currentPilotPilot_ID}`)
     const currentUserFlightsJson = await currentUserFlightsResponse.json()
     this.setState({currentUserFlights: currentUserFlightsJson})
@@ -44,7 +49,7 @@ class App extends React.Component {
         <p>Enter User_ID</p>
         <input type="text" onChange={this.handlePilotInput}/>
         <button onClick={this.handlePilotSubmit.bind(this)}>Get Personal File</button>
-        <button onClick={this.handlePilotSubmit.bind(this)}>Get Flight Schedule</button>
+        <button onClick={this.handlePilotSchedule.bind(this)}>Get Flight Schedule</button>
         <PersonalFile        
         userFile = {this.state.currentUserFile}
         pilotFile = {this.state.currentPilotFile} 
