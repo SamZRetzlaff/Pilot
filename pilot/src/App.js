@@ -29,14 +29,14 @@ class App extends React.Component {
 
   //METHODS
   
-  // async dataHandler() {
-  //   const usersResponse = await fetch('/dummyUser.json')
-  //   const pilotsResponse = await fetch('/dummyPilot.json')
-  //   const usersJson = await usersResponse.json()
-  //   const pilotsJson = await pilotsResponse.json()
-  //   this.setState({allUserFiles: usersJson,
-  //   allPilotFiles: pilotsJson})
-  // }
+  async componentDidMount() {
+    const allUsersResponse = await fetch(`http://localhost:3000/users`)
+    const allPilotsResponse = await fetch(`http://localhost:3000/pilots`)
+    const usersJson = await allUsersResponse.json()
+    const pilotsJson = await allPilotsResponse.json()
+    this.setState({allUserFiles: usersJson,
+    allPilotFiles: pilotsJson})
+  }
 
   handlePilotInput = (event) =>{
     event.preventDefault()

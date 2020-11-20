@@ -1,24 +1,16 @@
-const fs = require("fs")
-const bodyParser = require("body-parser")
-
 const express = require('express')
+const bodyParser = require("body-parser")
 const app = express()
+const database = require('./queries')
 const port = 3000
-
-app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
 
-const dummyUser = JSON.parse(fs.readFileSync('./dummyUser.json', 'utf-8'))
-const dummyPilot = JSON.parse(fs.readFileSync('./dummyPilot.json', 'utf-8'))
 
 //List of all Users
-app.get('/Users', (req,res) =>{
-    res.send(dummyUser)
-})
+app.get('/users', database.getUsers)
 //List of all Pilots
-app.get('/Pilots', (req,res) =>{
-    res.send(dummyPilot)
-})
+app.get('/pilots', database.getPilots)
 // //Get a User by Username
 // app.get('/Users/:Username', (req,res) =>{
     
