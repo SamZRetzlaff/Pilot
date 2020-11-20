@@ -8,25 +8,15 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      allUserFiles: [],
-      allPilotFiles: [],
       currentPilotUser_ID: '',
       currentPilotFile: [],
-      currentUserFile: []
+      currentUserFile: [],
+      currentPilotPilot_ID: '',
+      currentUserFlights: []
     }
   }
 
   //METHODS
-  
-  async componentDidMount() {
-    const allUsersResponse = await fetch(`http://localhost:3001/users`)
-    const usersJson = await allUsersResponse.json()
-    this.setState({allUserFiles: usersJson})
-    const allPilotsResponse = await fetch(`http://localhost:3001/pilots`)
-    const pilotsJson = await allPilotsResponse.json()
-    this.setState({allPilotFiles: pilotsJson})
-  }
-
   handlePilotInput = (event) =>{
     event.preventDefault()
     this.setState({currentPilotUser_ID: event.target.value})
@@ -40,6 +30,10 @@ class App extends React.Component {
     const currentPilotResponse = await fetch(`http://localhost:3001/pilots/${this.state.currentPilotUser_ID}`)
     const currentPilotJson = await currentPilotResponse.json()
     this.setState({currentPilotFile: currentPilotJson[0]}) 
+    this.setState({currentPilotPilot_ID: currentPilotJson[0].pilot_id})
+    const currentUserFlightsResponse = await fetch(`http://localhost:3001/flight/${this.state.currentPilotPilot_ID}`)
+    const currentUserFlightsJson = await currentUserFlightsResponse.json()
+    this.setState({currentUserFlights: currentUserFlightsJson[0]})
   }
 
   //RENDER
@@ -50,11 +44,13 @@ class App extends React.Component {
         <p>Enter User_ID</p>
         <input type="text" onChange={this.handlePilotInput}/>
         <button onClick={this.handlePilotSubmit.bind(this)}>Get Personal File</button>
+        <button onClick={this.handlePilotSubmit.bind(this)}>Get Flight Schedule</button>
         <PersonalFile        
         userFile = {this.state.currentUserFile}
         pilotFile = {this.state.currentPilotFile} 
         />
-        
+        {/* <FlightFile
+        /> */}
       </div>
     )
   }

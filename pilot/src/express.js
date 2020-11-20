@@ -24,14 +24,8 @@ app.get('/pilots/:user_id', database.getPilotById)
 // app.patch('/Pilots/:Pilot_ID', (req,res) =>{
     
 // })
-// //Get a list of all flights
-// app.get('/Flights', (req,res) =>{
-    
-// })
 // //Get list of flights for a given pilot
-// app.get('Flights/:Pilot_ID', (req,res) =>{
-    
-// })
+// app.get('/flight/:pilot_id', database.getFlightsByPilotId)
 // //Get a single flight, from a list of flights for a given pilot
 // app.get('Flights/:Pilot_ID/:Flight_ID', (req,res) =>{
     
