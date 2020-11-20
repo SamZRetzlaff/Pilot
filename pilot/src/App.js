@@ -48,9 +48,9 @@ class App extends React.Component {
       <div >
         <h1>Pilot Microservice</h1>
         <p>Enter User_ID</p>
-        <PersonalFile
-        onPilotInput = {this.handlePilotInput}
-        onPilotSubmit = {this.handlePilotSubmit.bind(this)}
+        <input type="text" onChange={this.handlePilotInput}/>
+        <button onClick={this.handlePilotSubmit.bind(this)}>Get Personal File</button>
+        <PersonalFile        
         userFile = {this.state.currentUserFile}
         pilotFile = {this.state.currentPilotFile} 
         />

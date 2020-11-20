@@ -4,11 +4,8 @@ function PersonalFile(props){
         DNIF_Status = 'Not Allowed to Fly'
     }
 
-
     return(
         <div>
-            <input type="text" onChange={props.onPilotInput}/>
-            <button onClick={props.onPilotSubmit}>Get Personal File</button>
             <h2>User Profile</h2>
             <p>Name: {props.userFile.first_name} {props.userFile.last_name}</p>
             <p>Username: {props.userFile.username} </p>
