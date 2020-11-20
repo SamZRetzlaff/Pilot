@@ -30,15 +30,15 @@ const getPilotById = (req, res) => {
 //Update a Pilots File, given a user ID
 
 //Get list of flights for a given pilot
-// const getFlightsByPilotId = (req, res) => {
-//     const pilot_id = parseInt(req.params.pilot_id)
-//     pool.query('SELECT * FROM flight WHERE pilot_id =$1', [pilot_id], (error,results) => {
-//         if(error) {
-//             throw error
-//         }
-//         res.status(200).json(results.rows)
-//     })
-// }
+const getFlightsByPilotId = (req, res) => {
+    const pilot_id = parseInt(req.params.pilot_id)
+    pool.query('SELECT * FROM flight WHERE pilot_id =$1', [pilot_id], (error,results) => {
+        if(error) {
+            throw error
+        }
+        res.status(200).json(results.rows)
+    })
+}
 //Get a single flight, from a list of flights for a given pilot
 
 //delete a flight, from a list of flights, for a given pilot
@@ -48,6 +48,6 @@ const getPilotById = (req, res) => {
 module.exports = {
     getUserById,
     getPilotById,
-    // getFlightsByPilotId,
+    getFlightsByPilotId,
 
   }

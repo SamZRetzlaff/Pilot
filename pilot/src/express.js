@@ -12,10 +12,6 @@ app.use(bodyParser.urlencoded({extended:true}))
 //     res.json({info: 'Node.js, Express, and Postgres API'})
 // })
 
-//List of all Users
-app.get('/users', database.getUsers)
-//List of all Pilots
-app.get('/pilots', database.getPilots)
 //Get a User by Username
 app.get('/users/:user_id', database.getUserById)
 //Get a Pilot by Pilot ID
@@ -25,7 +21,7 @@ app.get('/pilots/:user_id', database.getPilotById)
     
 // })
 // //Get list of flights for a given pilot
-// app.get('/flight/:pilot_id', database.getFlightsByPilotId)
+app.get('/flight/:pilot_id', database.getFlightsByPilotId)
 // //Get a single flight, from a list of flights for a given pilot
 // app.get('Flights/:Pilot_ID/:Flight_ID', (req,res) =>{
     

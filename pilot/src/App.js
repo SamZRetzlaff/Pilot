@@ -33,7 +33,7 @@ class App extends React.Component {
     this.setState({currentPilotPilot_ID: currentPilotJson[0].pilot_id})
     const currentUserFlightsResponse = await fetch(`http://localhost:3001/flight/${this.state.currentPilotPilot_ID}`)
     const currentUserFlightsJson = await currentUserFlightsResponse.json()
-    this.setState({currentUserFlights: currentUserFlightsJson[0]})
+    this.setState({currentUserFlights: currentUserFlightsJson})
   }
 
   //RENDER
