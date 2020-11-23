@@ -2,6 +2,7 @@ import React from 'react'
 //import logo from './logo.svg';
 import './App.css';
 import PersonalFile from './PersonalFile'
+import FlightFile from './FlightFile'
 
 class App extends React.Component {
   //CONSTRUCTOR
@@ -54,8 +55,11 @@ class App extends React.Component {
         userFile = {this.state.currentUserFile}
         pilotFile = {this.state.currentPilotFile} 
         />
-        {/* <FlightFile
-        /> */}
+        <FlightFile
+        scheduledFlights = {this.state.currentUserFlights}
+        userFile = {this.state.currentUserFile}
+        pilotFile = {this.state.currentPilotFile} 
+        />
       </div>
     )
   }
