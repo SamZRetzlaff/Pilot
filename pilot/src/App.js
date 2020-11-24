@@ -1,5 +1,4 @@
 import React from 'react'
-//import logo from './logo.svg';
 import './App.css';
 import PersonalFile from './PersonalFile'
 import FlightFile from './FlightFile'
@@ -13,7 +12,9 @@ class App extends React.Component {
       currentPilotFile: [],
       currentUserFile: [],
       currentPilotPilot_ID: '',
-      currentUserFlights: []
+      currentUserFlights: [],
+      newFlightHoursTotal: '',
+      flightHoursTotal: []
     }
   }
 
@@ -32,7 +33,7 @@ class App extends React.Component {
     const currentPilotJson = await currentPilotResponse.json()
     this.setState({currentPilotFile: currentPilotJson[0]}) 
     this.setState({currentPilotPilot_ID: currentPilotJson[0].pilot_id})
-    
+    this.setState({flightHoursTotal: currentPilotJson[0].flying_hours})
   }
   
   async handlePilotSchedule (event) {
@@ -41,6 +42,18 @@ class App extends React.Component {
     const currentUserFlightsJson = await currentUserFlightsResponse.json()
     this.setState({currentUserFlights: currentUserFlightsJson})
   }
+
+flightHoursInput = (event) => {
+  event.preventDefault()
+  this.setState({newFlightHoursTotal: event.target.value})
+  console.log(typeof(newFlightHoursTotal))
+}
+
+handleFlightHoursUpdate = (event) => {
+  event.preventDefault()
+  const newFlightHours = this.newFlightHoursTotal
+  this.setState({flightHoursTotal: newFlightHours})
+}
 
   //RENDER
   render() {
@@ -53,12 +66,15 @@ class App extends React.Component {
         <button onClick={this.handlePilotSchedule.bind(this)}>Get Flight Schedule</button>
         <PersonalFile        
         userFile = {this.state.currentUserFile}
-        pilotFile = {this.state.currentPilotFile} 
+        pilotFile = {this.state.currentPilotFile}  
+        onFlightHoursChange ={this.flightHoursInput}
+        onFlightHoursUpdate ={this.handleFlightHoursUpdate}
+        newFlightHours = {this.newFlightHoursTotal}
         />
         <FlightFile
         scheduledFlights = {this.state.currentUserFlights}
         userFile = {this.state.currentUserFile}
-        pilotFile = {this.state.currentPilotFile} 
+        pilotFile = {this.state.currentPilotFile}        
         />
       </div>
     )
