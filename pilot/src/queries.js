@@ -28,6 +28,7 @@ const getPilotById = (req, res) => {
     })
 }
 //Update a Pilots File, given a user ID
+
 const updateFlightHours = (req,res) =>{
     const flying_hours = parseInt(req.body.flying_hours)
     const pilot_id = parseInt(req.body.pilot_id)

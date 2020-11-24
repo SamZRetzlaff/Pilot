@@ -73,31 +73,28 @@ class App extends React.Component {
   this.setState({newFlightHoursTotal: event.target.value})
   }
 
-  // handleFlightHoursUpdate = async () => {
-  //   const pilot_data = {
-  //     pilot_id: this.state.currentPilotPilot_ID,
-  //     // user_id: this.state.currentPilotUser_ID,
-  //     // dnif: this.state.current_dnif,
-  //     // shift: this.state.current_shift,
-  //     flying_hours: this.state.flightHoursTotal
-  //     // qualifcation: this.state.current_qualifcation
-  //   }
-  //   await fetch(`http://localhost:3001/pilots/${this.state.currentPilotUser_ID}`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content_Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(pilot_data)
-  //   })
-    // .then(() => this.fetchData(`http://localhost:3001/pilots/${this.state.currentPilotUser_ID}`, 'GET'))
-    // .then(json => this.setState({currentPilotFile: json}))
-  // }
-// handleFlightHoursUpdate = (event) => {
-//   event.preventDefault()
-//   const newFlightHours = this.newFlightHoursTotal
-//   this.setState({flightHoursTotal: newFlightHours})
-// }
-
+  handleFlightHoursUpdate = async () => {
+    const pilot_data = {
+      pilot_id: this.state.currentPilotPilot_ID,
+      // user_id: this.state.currentPilotUser_ID,
+      // dnif: this.state.current_dnif,
+      // shift: this.state.current_shift,
+      flying_hours: this.state.newFlightHoursTotal
+      // qualifcation: this.state.current_qualifcation
+    }
+    console.log(pilot_data)
+    await fetch(`http://localhost:3001/pilots/${this.state.currentPilotUser_ID}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(pilot_data)
+    })
+    // .then(await (await fetch(`http://localhost:3001/users/${this.state.currentPilotUser_ID}`)).json())
+    // .then(json => this.setState({currentUserFile: json}))
+    .then(await (await fetch(`http://localhost:3001/pilots/${this.state.currentPilotUser_ID}`)).json())
+    .then(json => this.setState({currentPilotFile: json}))
+  }
 
   //RENDER
   render() {
