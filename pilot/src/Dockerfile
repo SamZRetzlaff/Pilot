@@ -1,15 +1,20 @@
+# pull official base image
 FROM node:15.2.1-alpine3.10
 
-# Create app directory
-WORKDIR /usr/src/app
+# set working directory
+WORKDIR /app
 
-# Install app dependencies
-COPY package*.json ./
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
 RUN npm install
+RUN npm install react-scripts -g
 
-# Bundle app source
-COPY . .
+# add app
+COPY . ./
 
-EXPOSE 8080
-CMD [ "node", "app.js" ]
+# start app
+CMD ["npm", "start"]

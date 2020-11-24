@@ -14,21 +14,21 @@ services:
     volumes:
         - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     
-  mx_scheduler_react:
+  pilotapp_react:
     build: .
-    image: violinalan/mx_scheduler_react:latest
+    image: samzr/pilotapp:latest
     command: npm start
     environment:
       - DATABASE_URL=postgres://admin:admin@db:5432
       - NODE_ENV=test
     depends_on:
-      - mx_scheduler_server
+      - pilotapp_server
     ports:
       - 2000:3000
 
-  mx_scheduler_server:
+  pilotapp_server:
     build: .
-    image: violinalan/mx_scheduler_server:latest
+    image: samzr/pilotapp_server:latest
     command: npm start
     environment:
       - DATABASE_URL=postgres://admin:admin@db:5432
