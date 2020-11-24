@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css';
 import PersonalFile from './PersonalFile'
+import UpcomingFlightsFile from './UpcomingFlightsFile'
 import FlightFile from './FlightFile'
 
 class App extends React.Component {
@@ -12,6 +13,7 @@ class App extends React.Component {
       currentPilotFile: [],
       currentUserFile: [],
       currentUserFlights: [],
+      currentUserSelectedFlight: [],
       //INPUTS
       newFlightHoursTotal: '',
       currentPilotUser_ID: '',
@@ -28,7 +30,17 @@ class App extends React.Component {
       flightHoursTotal: '',
       current_shift: '',
       current_qualification: '',
-      current_dnif: ''
+      current_dnif: '',
+      //FLIGHT DATA FIELDS
+      current_flight_id:'',
+      current_aircraft_id:'',
+      current_scheduled_takeoff_timestamp:'',
+      current_scheduled_landing_timestamp:'',
+      current_actual_takeoff_timestamp:'',
+      current_actual_landing_timestamp:'',
+      current_call_sign: '',
+      new_actual_takeoff_timestamp:'',
+      new_actual_landing_timestamp:''
     }
   }
 
@@ -96,6 +108,52 @@ class App extends React.Component {
     .then(json => this.setState({currentPilotFile: json}))
   }
 
+  handleFlightInput = (event) =>{
+    event.preventDefault()
+    this.setState({current_flight_id: event.target.value})
+  }
+
+  async handleViewFlight (event){
+    event.preventDefault()
+    const currentFlightResponse = await fetch(`http://localhost:3001/flight/singleflight/${this.state.current_flight_id}`)
+    const currentFlightJson = await currentFlightResponse.json()
+    this.setState({currentUserSelectedFlight: currentFlightJson[0]})
+    this.setState({current_flight_id:currentFlightJson[0].flight_id})
+    this.setState({current_aircraft_id:currentFlightJson[0].aircraft_id})
+    this.setState({current_scheduled_takeoff_timestamp:currentFlightJson[0].scheduled_takeoff_timestamp})
+    this.setState({current_scheduled_landing_timestamp:currentFlightJson[0].scheduled_landing_timestamp})
+    this.setState({current_actual_takeoff_timestamp:currentFlightJson[0].actual_takeoff_timestamp})
+    this.setState({current_actual_landing_timestamp:currentFlightJson[0].actual_landing_timestamp})
+    this.setState({current_call_sign:currentFlightJson[0].call_sign})
+  }
+
+  handleTakeoffChange = (event) => {
+    event.preventDefault()
+    this.setState({new_actual_takeoff_timestamp: event.target.value})
+    }
+
+  handleLandingChange = (event) => {
+    event.preventDefault()
+    this.setState({new_actual_takeoff_timestamp: event.target.value})
+    }
+
+  handleTakeoffUpdate = async () => {
+    const takeoff_data = {
+      actual_takeoff_timestamp: this.state.new_actual_takeoff_timestamp,
+      flight_id: this.state.current_flight_id
+    }
+    console.log(takeoff_data)
+    await fetch(`http://localhost:3001/flight/singleflight/${this.state.current_flight_id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(takeoff_data)
+    })
+    .then(await (await fetch(`http://localhost:3001/flight/singleflight/${this.state.current_flight_id}`)).json())
+    .then(json => this.setState({currentUserSelectedFlight: json}))
+  }
+
   //RENDER
   render() {
     return (
@@ -110,13 +168,23 @@ class App extends React.Component {
         pilotFile = {this.state.currentPilotFile}  
         onFlightHoursChange ={this.flightHoursInput}
         onFlightHoursUpdate ={this.handleFlightHoursUpdate}
-        newFlightHours = {this.newFlightHoursTotal}
         />
-        <FlightFile
+        <UpcomingFlightsFile
         scheduledFlights = {this.state.currentUserFlights}
         userFile = {this.state.currentUserFile}
-        pilotFile = {this.state.currentPilotFile}        
+        pilotFile = {this.state.currentPilotFile}     
         />
+        <h2>Flight Details</h2>
+        <input type="text" placeholder="Enter Flight ID Number" onChange={this.handleFlightInput}/>
+        <button type="button" onClick ={this.handleViewFlight.bind(this)}>Get Flight Details</button>
+        <FlightFile
+        flightFile = {this.state.currentUserSelectedFlight}
+        onTakeoffChange ={this.handleTakeoffChange}
+        onLandingChange ={this.handleLandingChange}
+        onTakeoffUpdate ={this.handleTakeoffUpdate}
+        onLandingUpdate = {this.handleLandingUpdate}
+        />
+        
       </div>
     )
   }

@@ -18,16 +18,12 @@ app.post('/pilots/:pilot_id', database.updateFlightHours)
 // //Get list of flights for a given pilot
 app.get('/flight/:pilot_id', database.getFlightsByPilotId)
 // //Get a single flight, from a list of flights for a given pilot
-// app.get('Flights/:Pilot_ID/:Flight_ID', (req,res) =>{
-    
-// })
+app.get('/flight/singleflight/:flight_id', database.getFlightByFlightId)
 // //delete a flight, from a list of flights, for a given pilot
 // app.delete('Flights/:Pilot_ID/:Flight_ID', (req,res) =>{
     
 // })
 // //update a flight, from a list of flights, for a given pilot
-// app.patch('Flights/:Pilot_ID/:Flight_ID', (req,res) =>{
-    
-// })
+app.post('/flight/singleflight/:flight_id', database.updateTakeoffTime)
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`))

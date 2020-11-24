@@ -50,15 +50,36 @@ const getFlightsByPilotId = (req, res) => {
         res.status(200).json(results.rows)
     })
 }
-//Get a single flight, from a list of flights for a given pilot
-
+//Get a single flight, from a flight ID
+const getFlightByFlightId = (req, res) => {
+    const flight_id = parseInt(req.params.flight_id)
+    pool.query('SELECT * FROM flight WHERE flight_id =$1', [flight_id], (error,results) => {
+        if(error) {
+            throw error
+        }
+        res.status(200).json(results.rows)
+    })
+}
 //delete a flight, from a list of flights, for a given pilot
 
 //update a flight, from a list of flights, for a given pilot
-
+const updateTakeoffTime = (req,res) =>{
+    const actual_takeoff_timestamp = parseInt(req.body.actual_takeoff_timestamp)
+    const flight_id = parseInt(req.body.flight_id)
+    console.log(actual_takeoff_timestamp)
+    console.log(flight_id)
+    pool.query('UPDATE flight SET actual_takeoff_timestamp = $1 WHERE flight_id = $2', [actual_takeoff_timestamp, flight_id], (error,results) => {
+        if(error) {
+            throw error
+        }
+        res.status(200).json(results.rows)
+    })
+}
 module.exports = {
     getUserById,
     getPilotById,
     getFlightsByPilotId,
-    updateFlightHours
+    updateFlightHours,
+    getFlightByFlightId,
+    updateTakeoffTime
   }

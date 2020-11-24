@@ -14,9 +14,9 @@ function PersonalFile(props){
             <h2>Pilot Profile</h2>
             <p>DNIF Status: {DNIF_Status}</p>
             <p>Qualification: {props.pilotFile.qualification}</p>
-            <p>Flight Hours: {props.pilotFile.flying_hours} 
-                <input type="text" placeholder="New Total Flight Hours" onChange={props.onFlightHoursChange}></input>
-                <button type="button" onClick ={props.onFlightHoursUpdate}>Update Flying Hours</button>
+            <p>Flight Hours: {props.pilotFile.flying_hours}   
+                 <input type="text" placeholder="New Total Flight Hours" onChange={props.onFlightHoursChange}></input>
+                 <button type="button" onClick ={props.onFlightHoursUpdate}>Update Flying Hours</button>
                 
             </p>
             
