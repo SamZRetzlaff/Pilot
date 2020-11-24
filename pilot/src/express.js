@@ -8,18 +8,13 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 
-// app.get('/', (req, res)=> {
-//     res.json({info: 'Node.js, Express, and Postgres API'})
-// })
 
 //Get a User by Username
 app.get('/users/:user_id', database.getUserById)
 //Get a Pilot by Pilot ID
 app.get('/pilots/:user_id', database.getPilotById)
-// //Update a Pilots File, given a pilot ID
-// app.patch('/Pilots/:Pilot_ID', (req,res) =>{
-    
-// })
+//Update a Pilots File, given a pilot ID
+app.post('/pilots/:pilot_id', database.updateFlightHours)
 // //Get list of flights for a given pilot
 app.get('/flight/:pilot_id', database.getFlightsByPilotId)
 // //Get a single flight, from a list of flights for a given pilot
