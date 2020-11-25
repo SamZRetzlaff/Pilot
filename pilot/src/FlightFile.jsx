@@ -10,10 +10,10 @@ function FlightFile(props){
     <p>Scheduled Landing: {props.flightFile.scheduled_landing_timestamp}</p>
     <p>Actual Takeoff: {props.flightFile.actual_takeoff_timestamp}</p>
     <input type="text" placeholder="Takeoff Timestamp" onChange={props.onTakeoffChange}></input>
-                 <button type="button" onClick ={props.onTakeoffUpdate}>Update Actual Takeoff</button>
+                 <button type="button" >Update Actual Takeoff</button>
     <p>Actual Landing: {props.flightFile.actual_landing_timestamp}</p>
     <input type="text" placeholder="Landing Timestamp" onChange={props.onLandingChange}></input>
-                 <button type="button" onClick ={props.onLandingUpdate}>Update Actual Landing</button>
+                 <button type="button" >Update Actual Landing</button>
         </div>
     )
 }
