@@ -53,7 +53,7 @@ class App extends React.Component {
 
   async handlePilotSubmit (event) {
     event.preventDefault()
-    const currentUserResponse = await fetch(`http://localhost:3001/users/${this.state.currentPilotUser_ID}`)
+    const currentUserResponse = await fetch(`http://localhost:8080/users/${this.state.currentPilotUser_ID}`)
     const currentUserJson = await currentUserResponse.json()
     this.setState({currentUserFile: currentUserJson[0]})
     this.setState({currentWorkCenter_ID: currentUserJson[0].work_center_id})
@@ -63,7 +63,7 @@ class App extends React.Component {
     this.setState({current_first_name: currentUserJson[0].first_name})
     this.setState({current_last_name: currentUserJson[0].last_name})
     this.setState({current_user_role: currentUserJson[0].user_role})
-    const currentPilotResponse = await fetch(`http://localhost:3001/pilots/${this.state.currentPilotUser_ID}`)
+    const currentPilotResponse = await fetch(`http://localhost:8080/pilots/${this.state.currentPilotUser_ID}`)
     const currentPilotJson = await currentPilotResponse.json()
     this.setState({currentPilotFile: currentPilotJson[0]}) 
     this.setState({currentPilotPilot_ID: currentPilotJson[0].pilot_id})
@@ -75,7 +75,7 @@ class App extends React.Component {
   
   async handlePilotSchedule (event) {
     event.preventDefault()
-    const currentUserFlightsResponse = await fetch(`http://localhost:3001/flight/${this.state.currentPilotPilot_ID}`)
+    const currentUserFlightsResponse = await fetch(`http://localhost:8080/flight/${this.state.currentPilotPilot_ID}`)
     const currentUserFlightsJson = await currentUserFlightsResponse.json()
     this.setState({currentUserFlights: currentUserFlightsJson})
   }
@@ -95,16 +95,16 @@ class App extends React.Component {
       // qualifcation: this.state.current_qualifcation
     }
     console.log(pilot_data)
-    await fetch(`http://localhost:3001/pilots/${this.state.currentPilotUser_ID}`, {
+    await fetch(`http://localhost:8080/pilots/${this.state.currentPilotUser_ID}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(pilot_data)
     })
-    // .then(await (await fetch(`http://localhost:3001/users/${this.state.currentPilotUser_ID}`)).json())
+    // .then(await (await fetch(`http://localhost:8080/users/${this.state.currentPilotUser_ID}`)).json())
     // .then(json => this.setState({currentUserFile: json}))
-    .then(await (await fetch(`http://localhost:3001/pilots/${this.state.currentPilotUser_ID}`)).json())
+    .then(await (await fetch(`http://localhost:8080/pilots/${this.state.currentPilotUser_ID}`)).json())
     .then(json => this.setState({currentPilotFile: json}))
   }
 
@@ -115,7 +115,7 @@ class App extends React.Component {
 
   async handleViewFlight (event){
     event.preventDefault()
-    const currentFlightResponse = await fetch(`http://localhost:3001/flight/singleflight/${this.state.current_flight_id}`)
+    const currentFlightResponse = await fetch(`http://localhost:8080/flight/singleflight/${this.state.current_flight_id}`)
     const currentFlightJson = await currentFlightResponse.json()
     this.setState({currentUserSelectedFlight: currentFlightJson[0]})
     this.setState({current_flight_id:currentFlightJson[0].flight_id})
@@ -143,14 +143,14 @@ class App extends React.Component {
       flight_id: this.state.current_flight_id
     }
     console.log(takeoff_data)
-    await fetch(`http://localhost:3001/flight/singleflight/${this.state.current_flight_id}`, {
+    await fetch(`http://localhost:8080/flight/singleflight/${this.state.current_flight_id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(takeoff_data)
     })
-    .then(await (await fetch(`http://localhost:3001/flight/singleflight/${this.state.current_flight_id}`)).json())
+    .then(await (await fetch(`http://localhost:8080/flight/singleflight/${this.state.current_flight_id}`)).json())
     .then(json => this.setState({currentUserSelectedFlight: json}))
   }
 
